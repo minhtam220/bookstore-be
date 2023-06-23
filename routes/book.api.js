@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
+const crypto = require("crypto");
 
 /**
  * params: /
@@ -104,7 +105,12 @@ router.post("/", (req, res, next) => {
       id: crypto.randomBytes(4).toString("hex"),
     };
 
-    console.log(newBook);
+    /*
+    const exception = new Error(`Missing body info`);
+      exception.statusCode = 401;
+      throw exception;
+      */
+
     //Read data from db.json then parse to JSobject
     let db = fs.readFileSync("db.json", "utf-8");
     db = JSON.parse(db);
